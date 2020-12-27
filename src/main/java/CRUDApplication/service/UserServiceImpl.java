@@ -7,41 +7,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import CRUDApplication.models.Role;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;
 
 
+
     @Override
-    public List<User> index() {
-        return userDAO.index();
+    @Transactional
+    public List<User> getAllUsers() {
+        return userDAO.getAllUsers();
     }
 
     @Override
-    public User show(int id) {
-        return userDAO.show(id);
+    @Transactional
+    public User getUserById(Long id) {
+        return userDAO.getUserById(id);
     }
 
     @Override
+    @Transactional
     public void saveUser(User user) {
         userDAO.saveUser(user);
 
     }
 
     @Override
-    public void editUser(int id, User editedUser) {
-        userDAO.editUser(id,editedUser);
+    @Transactional
+    public void editUser(User user) {
+        userDAO.editUser(user);
 
     }
 
     @Override
-    public void delete(int id) {
-        userDAO.delete(id);
+    @Transactional
+    public void delete(Long id) {
+        userDAO.delete(userDAO.getUserById(id));
 
+    }
+
+    @Override
+    @Transactional
+    public User getUserByName(String login) {
+        return userDAO.getUserByName(login);
+    }
+
+    @Override
+    @Transactional
+    public Role getRoleByName(String role) {
+        return userDAO.getRoleByName(role);
     }
 }

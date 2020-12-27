@@ -2,12 +2,15 @@ package CRUDApplication.dao;
 
 import CRUDApplication.models.User;
 
+import CRUDApplication.models.Role;
 import java.util.List;
 
 public interface UserDAO {
-    List<User> index();
-    User show(int id);
+    List<User> getAllUsers();
+    User getUserById(Long id);
     void saveUser(User user);
-    void editUser(int id, User editedUser);
-    void delete(int id);
+    void editUser(User user);
+    void delete(User user);
+    User getUserByName(String name);
+    Role getRoleByName(String name);
 }

@@ -14,8 +14,24 @@
 <input type="text" th:field="*{age}" id="age"/>
 <label for="sex">Edit sex: </label>
 <input type="text" th:field="*{sex}" id="sex"/>
+    <tr>
+        <td>
+            <label>User Role</label>
+        </td>
+        <td>
+            <label>
+                <select multiple size="10" th:name="roles">
+                    <div th:each="role : ${roles}">
+                        <option th:value="${role.getId()}" th:selected="${role.id==1}"
+                                th:text="${role.getRoleName()}"></option>
+                    </div>
+                </select>
+            </label>
+        </td>
+    </tr>
 <br/>
 <input type="submit" value="Edit user"/>
 </form>
+<h2><a th:href="@{/logout}"> Logout </a></h2>
 </body>
 </html>
